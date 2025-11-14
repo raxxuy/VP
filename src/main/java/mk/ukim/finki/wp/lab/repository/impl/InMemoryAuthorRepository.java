@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.lab.repository.impl;
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.Author;
+import mk.ukim.finki.wp.lab.model.Book;
 import mk.ukim.finki.wp.lab.repository.AuthorRepository;
 import org.springframework.stereotype.Repository;
 
@@ -21,5 +22,17 @@ public class InMemoryAuthorRepository implements AuthorRepository {
         return DataHolder.authors.stream()
                 .filter(author -> author.getId().equals(id))
                 .findFirst();
+    }
+
+    @Override
+    public Author save(Author author) {
+        DataHolder.authors.removeIf(a -> a.getId().equals(author.getId()));
+        DataHolder.authors.add(author);
+        return author;
+    }
+
+    @Override
+    public void delete(Long id) {
+        DataHolder.authors.removeIf(author -> author.getId().equals(id));
     }
 }

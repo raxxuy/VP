@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Book Reservation - Admin Panel</title>
+        <style type="text/css">
+            body {
+                width: 800px;
+                margin: auto;
+                font-family: Arial, sans-serif;
+            }
+
+            h1 {
+                color: #333;
+            }
+
+            form {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h2 th:text="|${id != null ? 'Edit' : 'Add'} author:|"></h2>
+            <form th:action="|/authors${id != null ? '/edit/' + id : '/add'}|" method="POST">
+                <input type="hidden" name="id" th:value="${id}">
+
+                <label>Name:</label>
+                <input type="text" name="name" th:value="${name != null} ? ${name} : ''" required/>
+                <br/>
+
+                <label>Surname:</label>
+                <input type="text" name="surname" th:value="${surname != null} ? ${surname} : ''" required/>
+                <br/>
+
+                <label>Country:</label>
+                <input type="text" name="country" th:value="${country != null} ? ${country} : ''" step=".01"
+               min="0" value="0" required/>
+                <br/>
+
+                <label>Biography:</label>
+                <input type="text" name="biography" th:value="${biography != null} ? ${biography} : ''" step=".01"
+                       min="0" value="0" required/>
+                <br/>
+
+                <br/>
+
+                <button th:text="|${id != null ? 'Edit' : 'Add'} author|" type="submit"></button>
+            </form>
+        </main>
+    </body>
+</html>

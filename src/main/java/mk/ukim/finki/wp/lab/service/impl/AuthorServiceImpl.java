@@ -24,4 +24,25 @@ public class AuthorServiceImpl implements AuthorService {
     public Author findById(Long id) {
         return authorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Author not found"));
     }
+
+    @Override
+    public Author save(String name, String surname, String country, String biography) {
+        Author author = new Author(name, surname, country, biography);
+        return authorRepository.save(author);
+    }
+
+    @Override
+    public Author edit(Long id, String name, String surname, String country, String biography) {
+        Author author = findById(id);
+        author.setName(name);
+        author.setSurname(surname);
+        author.setCountry(country);
+        author.setBiography(biography);
+        return authorRepository.save(author);
+    }
+
+    @Override
+    public void delete(Long id) {
+        authorRepository.delete(id);
+    }
 }
