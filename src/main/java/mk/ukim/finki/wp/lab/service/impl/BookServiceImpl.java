@@ -47,7 +47,7 @@ public class BookServiceImpl implements BookService {
         book.setGenre(genre);
         book.setAverageRating(averageRating);
         book.setAuthor(authorService.findById(authorId));
-        return bookRepository.save(book);
+        return bookRepository.edit(id, book);
     }
 
     @Override

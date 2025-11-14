@@ -34,7 +34,9 @@
    <form>
        <div th:each="author : ${authors}">
            <div class="book-entry">
-               <p th:text="|Name: ${author.getName()}, Surname: ${author.getSurname()}, Country: ${author.getCountry()}, Biography: ${author.getBiography()}|"></p>
+               <label th:text="|Name: ${author.getName()}, Surname: ${author.getSurname()}, Country: ${author.getCountry()}, Biography: ${author.getBiography()}|">
+
+               </label>
 
                <button type="submit" name="edit" th:formaction="|/authors/author-form/${author.getId()}|" formmethod="get" formnovalidate>
                    Edit

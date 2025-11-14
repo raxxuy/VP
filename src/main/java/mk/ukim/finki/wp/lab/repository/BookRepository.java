@@ -10,5 +10,6 @@ public interface BookRepository {
     List<Book> searchBooks(String text, Double rating);
     Optional<Book> findById(Long id);
     Book save(Book book);
+    Book edit(Long id, Book book);
     void delete(Long id);
 }

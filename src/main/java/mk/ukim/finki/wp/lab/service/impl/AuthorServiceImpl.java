@@ -38,7 +38,7 @@ public class AuthorServiceImpl implements AuthorService {
         author.setSurname(surname);
         author.setCountry(country);
         author.setBiography(biography);
-        return authorRepository.save(author);
+        return authorRepository.edit(id, author);
     }
 
     @Override
