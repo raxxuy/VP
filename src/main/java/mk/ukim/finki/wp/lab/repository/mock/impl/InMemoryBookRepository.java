@@ -1,8 +1,8 @@
-package mk.ukim.finki.wp.lab.repository.impl;
+package mk.ukim.finki.wp.lab.repository.mock.impl;
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.Book;
-import mk.ukim.finki.wp.lab.repository.BookRepository;
+import mk.ukim.finki.wp.lab.repository.mock.BookRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -34,6 +34,14 @@ public class InMemoryBookRepository implements BookRepository {
     public Book save(Book book) {
         DataHolder.books.removeIf(m -> m.getId().equals(book.getId()));
         DataHolder.books.add(book);
+        return book;
+    }
+
+    @Override
+    public Book edit(Long id, Book book) {
+        int index = DataHolder.books.indexOf(findById(id).orElseThrow());
+        DataHolder.books.removeIf(a -> a.getId().equals(id));
+        DataHolder.books.add(index, book);
         return book;
     }
 

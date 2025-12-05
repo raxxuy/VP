@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp.lab.repository;
+package mk.ukim.finki.wp.lab.repository.mock;
 
 import mk.ukim.finki.wp.lab.model.Book;
 
@@ -10,5 +10,6 @@ public interface BookRepository {
     List<Book> searchBooks(String text, Double rating);
     Optional<Book> findById(Long id);
     Book save(Book book);
+    Book edit(Long id, Book book);
     void delete(Long id);
 }
